@@ -21,13 +21,26 @@ app.use(bodyParser.json());
 app.use(express.static("frontend"));
 
 app.get("/poll", function (req, res) {
-  // use getMsgs to get messages to send back
-  // write code here
+  res.json({
+    msg: getMsgs(),
+  });
 });
 
 app.post("/poll", function (req, res) {
-  // add a new message to the server
-  // write code here
+  const { user, text } = req.body;
+
+  const newMsg = {
+    user,
+    text,
+    time: Date.now(),
+  };
+
+  msg.push(newMsg);
+
+  res.json({
+    status: "success",
+    data: newMsg,
+  });
 });
 
 // start the server
